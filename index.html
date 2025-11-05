@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRU Campus Navigation - Muteesa I Royal University</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ===== HEADER SECTION ===== -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="image/muteesa-1-royal-university-mru-logo-png_seeklogo-550326.png" alt="MRU Logo" class="logo">
+            </div>
+            <div class="title-container">
+                <h1>Muteesa I Royal University</h1>
+                <p class="subtitle">Campus Navigation System - Masaka Main Campus</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT SECTION ===== -->
+    <div class="container">
+        <div class="controls-panel">
+            <h2>Campus Facilities</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Facilities</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="service">Services</button>
+                <button class="filter-btn" data-filter="administrative">Administrative</button>
+            </div>
+            
+            <h3>Campus Navigation</h3>
+            <div class="routing-controls">
+                <div class="form-group">
+                    <label for="start-point">From:</label>
+                    <select id="start-point">
+                        <option value="">Select Starting Point</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="end-point">To:</label>
+                    <select id="end-point">
+                        <option value="">Select Destination</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button id="calculate-route" class="btn-primary">Calculate Route</button>
+                    <button id="clear-route" class="btn-secondary">Clear Route</button>
+                </div>
+            </div>
+            
+            <!-- Route Information Panel -->
+            <div id="route-info" class="route-info hidden">
+                <h4>Route Information</h4>
+                <div id="route-details">
+                    <p><strong>Distance:</strong> <span id="route-distance">-</span></p>
+                    <p><strong>Estimated Time:</strong> <span id="route-time">-</span></p>
+                </div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search facilities...">
+                <button id="search-btn">Search</button>
+            </div>
+            
+            <div class="legend">
+                <h4>Map Legend</h4>
+                <div class="legend-item">
+                    <div class="legend-color academic"></div>
+                    <span>Academic Buildings</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color residential"></div>
+                    <span>Residential Facilities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color service"></div>
+                    <span>Services & Amenities</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color administrative"></div>
+                    <span>Administrative Offices</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color route"></div>
+                    <span>Route Path</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color start"></div>
+                    <span>Start Point</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color end"></div>
+                    <span>Destination</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-overlay">
+                <button id="fullscreen-toggle" class="fullscreen-btn" title="Toggle Fullscreen">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="campus-info">
+            <h3>About MRU Masaka Campus</h3>
+            <p>The Masaka Main Campus of Muteesa I Royal University is located in central Uganda and serves as the primary academic center with modern facilities for students and staff.</p>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul class="footer-links">
+                    <li>Muteesa I Royal University</li>
+                    <li>P.O. Box 13010, Masaka, Uganda</li>
+                    <li>Email: info@mru.ac.ug</li>
+                    <li>Phone: +256 414 123 456</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://www.mru.ac.ug" target="_blank">University Website</a></li>
+                    <li><a href="#">Academic Programs</a></li>
+                    <li><a href="#">Admissions</a></li>
+                    <li><a href="#">Student Portal</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>About This Map</h3>
+                <p>This interactive campus map helps students, staff, and visitors navigate the MRU Masaka campus efficiently. It includes facility locations, descriptions, and routing between points of interest.</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Muteesa I Royal University. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

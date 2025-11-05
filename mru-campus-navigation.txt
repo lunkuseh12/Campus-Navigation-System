@@ -1,0 +1,21 @@
+mru-campus-navigation/
+│
+├── index.html              # Main HTML file
+├── styles.css              # All CSS styles
+├── script.js               # All JavaScript functionality
+├── README.md               # Project documentation
+├── report.md               # Project report (this file)
+│
+├── assets/                 # Static assets folder
+│   ├── images/
+│   │   ├── favicon.ico     # Website favicon
+│   │   └── mru-logo.png    # University logo
+│   └── icons/
+│       ├── academic.png    # Academic building icon
+│       ├── residential.png # Residential building icon
+│       └── ...
+│
+└── docs/                   # Documentation folder
+    ├── requirements.md     # Project requirements
+    ├── technical.md       # Technical specifications
+    └── user-guide.md      # User manual
